@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Identification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Disease Identification</h1>
+    
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="textfile">Upload Text File:</label>
+        <input type="file" id="textfile" name="textfile" accept=".txt">
+        <button type="button" onclick="uploadFile('textfile')">Upload Text File</button>
+        
+        <label for="audiofile">Upload Audio File:</label>
+        <input type="file" id="audiofile" name="audiofile" accept=".mp3, .wav">
+        <button type="button" onclick="uploadFile('audiofile')">Upload Audio File</button>
+        
+        <label for="liveaudio">Record Live Audio:</label>
+        <button type="button" onclick="uploadLiveAudio()">Record Live Audio</button>
+        
+        <label for="imagefile">Upload Image File:</label>
+        <input type="file" id="imagefile" name="imagefile" accept=".jpg, .jpeg, .png">
+        <button type="button" onclick="uploadFile('imagefile')">Upload Image File</button>
+    </form>
+
+    <div id="result">
+        <h2>Identified Disease Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Disease Name</th>
+                    <th>Severity Level</th>
+                    <th>Symptoms</th>
+                    <th>Recommended Medications</th>
+                    <th>Required Food</th>
+                    <th>Safety Precautions</th>
+                    <th>Recommended Doctor</th>
+                    <th>Treatment Plan</th>
+                    <th>Follow-Up Recommendations</th>
+                    <th>Patient Education</th>
+                    <th>Recovery Time</th>
+                </tr>
+            </thead>
+            <tbody id="diseaseInfo">
+                <!-- Disease information will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function uploadFile(inputId) {
+            var formData = new FormData();
+            var fileInput = document.getElementById(inputId);
+            var file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
+            formData.append(inputId, file);
+
+            fetch('/upload-' + inputId + '/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayDiseaseInfo(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function uploadLiveAudio() {
+            fetch('/upload-live-audio/', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayDiseaseInfo(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function displayDiseaseInfo(data) {
+            var tbody = document.getElementById('diseaseInfo');
+            tbody.innerHTML = ''; // Clear previous results
+
+            if (data.message && data.disease) {
+                var disease = data.disease;
+                var row = '<tr>';
+                row += `<td>${disease['Disease Name'] || ''}</td>`;
+                row += `<td>${disease['Severity Level'] || ''}</td>`;
+                row += `<td>${disease['Symptoms'] || ''}</td>`;
+                row += `<td>${disease['Recommended Medications'] || ''}</td>`;
+                row += `<td>${disease['Required Food'] || ''}</td>`;
+                row += `<td>${disease['Safety Precautions'] || ''}</td>`;
+                row += `<td>${disease['Recommended Doctor'] || ''}</td>`;
+                row += `<td>${disease['Treatment Plan'] || ''}</td>`;
+                row += `<td>${disease['Follow-Up Recommendations'] || ''}</td>`;
+                row += `<td>${disease['Patient Education'] || ''}</td>`;
+                row += `<td>${disease['Recovery Time'] || ''}</td>`;
+                row += '</tr>';
+                tbody.innerHTML = row;
+            } else {
+                tbody.innerHTML = '<tr><td colspan="11">No data available.</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>

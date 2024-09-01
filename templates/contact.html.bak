@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Disease Identifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+            padding: 1rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 40px; /* Adjust the size as needed */
+            margin-right: 0.5rem;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 1.5rem;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/ProjectLogo.jpeg" alt="Health Center Logo">
+            <a href="#">Health Center</a>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Contact Us Page Content -->
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or need assistance, we're here to help!</p>
+        <h2>Customer Support</h2>
+        <p>Our dedicated customer support team is available to assist you with any inquiries or issues. Whether it's a technical question, feedback, or general inquiry, we're just a message away.</p>
+        <h2>Get in Touch</h2>
+        <p>Feel free to reach out via email or through the contact form below. We value your feedback and are committed to providing the best experience.</p>
+        <p><b>Email:</b> suneelkumarparvathala@gmail.com</p>
+        <p><b>Phone:</b> 9550558167</p>
+        <h2>Stay Connected</h2>
+        <p>Stay updated with the latest news, updates, and health tips by following us on social media. Connect with us on Facebook or Instagram to join our community.</p>
+    </div>
+</body>
+</html>

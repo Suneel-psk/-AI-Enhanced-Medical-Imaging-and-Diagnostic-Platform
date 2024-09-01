@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Identifier</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Disease Identifier</h1>
+
+    <!-- Form for Text Input -->
+    <form action="{{ url_for('identify_disease_text') }}" method="post">
+        <label for="symptoms_text">Enter Symptoms:</label>
+        <textarea id="symptoms_text" name="symptoms_text" rows="4" cols="50"></textarea>
+        <button type="submit">Identify Disease</button>
+    </form>
+
+    <!-- Form for Audio File Upload -->
+    <form action="{{ url_for('record_audio') }}" method="post" enctype="multipart/form-data">
+        <label for="audio_file">Upload Audio File:</label>
+        <input type="file" id="audio_file" name="audio_file" accept="audio/*">
+        <button type="submit">Identify Disease from Audio</button>
+    </form>
+
+    <!-- Form for Image File Upload -->
+    <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+        <label for="image_file">Upload Image File:</label>
+        <input type="file" id="image_file" name="image_file" accept="image/*">
+        <button type="submit">Identify Disease from Image</button>
+    </form>
+
+    <!-- Form for Live Speech Recording -->
+    <form action="{{ url_for('record_live_speech') }}" method="post">
+        <label for="duration">Duration (seconds):</label>
+        <input type="number" id="duration" name="duration" min="1" max="60" value="10">
+        <button type="submit">Record Live Speech</button>
+    </form>
+
+    <!-- Display disease information in a table -->
+    {% if disease_info %}
+        <h2>Disease Information</h2>
+        <table>
+            <tr>
+                <th>Disease Name</th>
+                <td>{{ disease_info['Disease Name'] }}</td>
+            </tr>
+            <tr>
+                <th>Severity Level</th>
+                <td>{{ disease_info['Severity Level'] }}</td>
+            </tr>
+            <tr>
+                <th>Symptoms</th>
+                <td>{{ disease_info['Symptoms'] }}</td>
+            </tr>
+            <tr>
+                <th>Recommended Medications</th>
+                <td>{{ disease_info['Recommended Medications'] }}</td>
+            </tr>
+            <tr>
+                <th>Required Food</th>
+                <td>{{ disease_info['Required Food'] }}</td>
+            </tr>
+            <tr>
+                <th>Safety Precautions</th>
+                <td>{{ disease_info['Safety Precautions'] }}</td>
+            </tr>
+            <tr>
+                <th>Recommended Doctor</th>
+                <td>{{ disease_info['Recommended Doctor'] }}</td>
+            </tr>
+            <tr>
+                <th>Treatment Plan</th>
+                <td>{{ disease_info['Treatment Plan'] }}</td>
+            </tr>
+            <tr>
+                <th>Follow-Up Recommendations</th>
+                <td>{{ disease_info['Follow-Up Recommendations'] }}</td>
+            </tr>
+            <tr>
+                <th>Patient Education</th>
+                <td>{{ disease_info['Patient Education'] }}</td>
+            </tr>
+            <tr>
+                <th>Recovery Time</th>
+                <td>{{ disease_info['Recovery Time'] }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>No disease information available.</p>
+    {% endif %}
+</body>
+</html>

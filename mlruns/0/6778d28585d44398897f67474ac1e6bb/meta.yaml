@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/AI-Projects/FinalProject/P1/mlruns/0/6778d28585d44398897f67474ac1e6bb/artifacts
+end_time: 1724905457455
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6778d28585d44398897f67474ac1e6bb
+run_name: myrun
+run_uuid: 6778d28585d44398897f67474ac1e6bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724905451467
+status: 3
+tags: []
+user_id: HP
