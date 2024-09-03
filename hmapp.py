@@ -131,3 +131,5 @@ async def record_live_speech(request: Request, duration: int = Form(9)):  # Defa
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5001, debug=True)
+    #uvicorn hmapp:app --host 0.0.0.0 --port 5001 --reload
+

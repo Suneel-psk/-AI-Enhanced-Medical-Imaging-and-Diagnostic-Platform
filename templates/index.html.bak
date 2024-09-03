@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Identifier</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +12,6 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
         .navbar {
@@ -49,15 +47,11 @@
 
         .container {
             max-width: 800px;
-            margin: 1rem auto;
+            margin: 2rem auto;
             padding: 1rem;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem; /* Space between forms */
-            flex: 1; /* Allow container to grow */
         }
 
         h1 {
@@ -68,12 +62,11 @@
         }
 
         form {
+            margin-bottom: 1.5rem;
             border: 1px solid #ddd;
             padding: 1rem;
             border-radius: 8px;
             background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
         }
 
         form label {
@@ -86,7 +79,7 @@
         form input[type="text"],
         form input[type="number"],
         form input[type="file"] {
-            width: 100%;
+            width: calc(100% - 1rem);
             padding: 0.5rem;
             margin-bottom: 1rem;
             border: 1px solid #ddd;
@@ -142,6 +135,18 @@
             margin-top: 1rem;
             text-align: center;
         }
+
+        .mic-icon {
+            font-size: 1.5rem;
+            color: #007BFF;
+            margin-right: 0.5rem;
+            display: inline; /* Default state, adjust as needed */
+        }
+
+        .mic-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -165,7 +170,7 @@
         <!-- Form for Text Input -->
         <form action="{{ url_for('identify_disease_text') }}" method="post">
             <label for="symptoms_text">Enter Symptoms:</label>
-            <textarea id="symptoms_text" name="symptoms_text" rows="4" placeholder="Type symptoms such as itching, sleeping, aching, etc."></textarea>
+            <textarea id="symptoms_text" name="symptoms_text" rows="4" cols="50" placeholder="Type symptoms such as itching, sleeping, aching, etc."></textarea>
             <button type="submit">Identify Disease</button>
         </form>
 
@@ -184,10 +189,13 @@
         </form>
 
         <!-- Form for Live Speech -->
-        <form action="{{ url_for('record_live_speech') }}" method="post">
-            <label for="duration">Record Live Speech (seconds):</label>
+        <form id="live-speech-form" action="{{ url_for('record_live_speech') }}" method="post">
+            <label for="duration">
+                <i id="mic-icon" class="fas fa-microphone mic-icon"></i> Record Live Speech (seconds):
+            </label>
             <input type="number" id="duration" name="duration" min="1" max="60" value="9">
             <button type="submit">Record Live Speech</button>
+            <p class="mic-info">Make sure to turn on your microphone and grant permission for recording.</p>
         </form>
     </div>
 </body>

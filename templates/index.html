@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Identifier</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -134,13 +135,24 @@
             margin-top: 1rem;
             text-align: center;
         }
+
+        .mic-icon {
+            font-size: 1.5rem;
+            color: #007BFF;
+            margin-right: 0.5rem;
+        }
+
+        .mic-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
         <div class="logo">
-           <img src="/static/ProjectLogo.jpeg" alt="Health Center Logo">
+            <img src="/static/ProjectLogo.jpeg" alt="Health Center Logo">
             <a href="#">Health Center</a>
         </div>
         <div class="nav-links">
@@ -177,13 +189,13 @@
 
         <!-- Form for Live Speech -->
         <form action="{{ url_for('record_live_speech') }}" method="post">
-            <label for="duration">Record Live Speech (seconds):</label>
+            <label for="duration">
+                <i class="fas fa-microphone mic-icon"></i> Record Live Speech (seconds):
+            </label>
             <input type="number" id="duration" name="duration" min="1" max="60" value="9">
             <button type="submit">Record Live Speech</button>
+            <p class="mic-info">Make sure to turn on your microphone and grant permission for recording.</p>
         </form>
-
-       
-        
     </div>
 </body>
 </html>
