@@ -132,4 +132,4 @@ if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5001, debug=True)
     #uvicorn hmapp:app --host 0.0.0.0 --port 5001 --reload
-
+    #http://localhost:5001/ to access url in browser
